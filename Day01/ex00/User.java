@@ -1,15 +1,19 @@
 package ex00;
 
 public class User {
-    private Integer id;
+    private static int count;
+    private Integer id = count++;
     private Integer balance;
     private String name;
 
-    public User(String name, Integer balance, int id) {
+    public User(String name, Integer balance) {
         setName(name);
         setBalance(balance);
-        this.id = id;
+        this.id = setID();
     }
+    public Integer setID() {
+        this.id = id + 1;
+        return id;}
 
     public Integer getID() {
         return id;

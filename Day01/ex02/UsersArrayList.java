@@ -2,7 +2,7 @@ package ex02;
 
 public class UsersArrayList implements UsersList {
     private User[] array = new User[10];
-    private int pointer = 0;
+    private Integer pointer = 0;
 
     @Override
     public void addUser(User item) {
@@ -11,13 +11,13 @@ public class UsersArrayList implements UsersList {
         array[pointer++] = item;
     }
 
-    private void newArraySize(int newLength) {
+    private void newArraySize(Integer newLength) {
         User[] newArray = new User[newLength];
         myArrayCopy(array, newArray, 0);
         array = newArray;
     }
 
-    public static void myArrayCopy(User[] lastArray, User[] newArray, int i) {
+    public static void myArrayCopy(User[] lastArray, User[] newArray, Integer i) {
         while (i < lastArray.length) {
             newArray[i] = lastArray[i];
             i++;
@@ -25,25 +25,21 @@ public class UsersArrayList implements UsersList {
     }
 
     @Override
-    public int retrieveNumberOfUsers() {
+    public Integer retrieveNumberOfUsers() {
         return pointer;
     }
 
-    public User retrieveUserByID (int id) throws UserNotFoundException {
-        int i = 0;
-        while (i < pointer) {
+    @Override
+    public User retrieveUserByID (Integer id) throws UserNotFoundException {
+        for (Integer i = 0; i < pointer; i++) {
             if (array[i].getID() == id)
                 return (User) array[i];
-            i++;
         }
-        if (i == pointer) {
-            throw new UserNotFoundException();
-        }
-        return (null);
+        throw new UserNotFoundException();
     }
 
     @Override
-    public User retrieveUserByIndex(int index) {
+    public User retrieveUserByIndex(Integer index) {
         return (User) array[index];
     }
 }

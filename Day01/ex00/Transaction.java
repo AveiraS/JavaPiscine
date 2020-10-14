@@ -1,22 +1,32 @@
 package ex00;
 
+import java.util.UUID;
+
 public class Transaction {
     private String uuid;
     private User recipient;
     private User sender;
-    private Integer amount;
     private String transferCategory;
+    private Integer amount;
 
-    public Transaction (String uuid, User user1, User user2, String transferCategory, int amount){
-        this.uuid = uuid;
+    public Transaction (User user1, User user2, String transferCategory, Integer amount){
+        this.uuid = UUID.randomUUID().toString();
         this.recipient = user1;
         this.sender = user2;
         this.transferCategory = transferCategory;
-        this.amount = amount;
+        setAmount(transferCategory, amount);
     }
 
-    public void setAmount(User user, Integer amount) {
-        if (user.getBalance()-amount > 0)
+    public void setAmount(String transferCategory, Integer amount) {
+        if (transferCategory.equals("debits") && amount > 0)
             this.amount = amount;
+        else if (transferCategory.equals("credits") && amount < 0)
+            this.amount = amount;
+        else
+            this.amount = 0;
+    }
+
+    public Integer getAmount() {
+        return amount;
     }
 }
