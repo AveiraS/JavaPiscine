@@ -1,4 +1,4 @@
-package ex01;
+package Day01.ex01;
 
 public class User {
     private Integer id;

@@ -1,4 +1,4 @@
-package ex02;
+package Day01.ex02;
 
 public interface UsersList {
     public void addUser(User item);

@@ -1,4 +1,4 @@
-package ex02;
+package Day01.ex02;
 
 public class UsersArrayList implements UsersList {
     private User[] array = new User[10];
